@@ -1,0 +1,34 @@
+name: peekaboo
+options:
+  deploymentTarget:
+    iOS: 14.0
+  xcodeVersion: "12.5"
+  bundleIdPrefix: com.exam
+settings:
+  MARKETING_VERSION: 0.0.1
+configs:
+  Debug: debug
+  Staging: release
+  Release: release
+targets:
+  peekaboo:
+    type: application
+    platform: iOS
+    settings:
+      base:
+        TARGETED_DEVICE_FAMILY: 1
+      configs:
+        Staging:
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: "STAGING"
+    sources:
+      - peekaboo
+    scheme:
+      testTargets:
+        - peekabooTests
+  peekabooTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - peekabooTests
+    dependencies:
+      - target: peekaboo

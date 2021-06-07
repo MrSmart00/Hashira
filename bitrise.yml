@@ -1,0 +1,62 @@
+---
+format_version: '11'
+default_step_lib_source: 'https://github.com/bitrise-io/bitrise-steplib.git'
+project_type: ios
+trigger_map:
+- push_branch: '*'
+  workflow: tests
+- pull_request_source_branch: '*'
+  workflow: tests
+workflows:
+  tests:
+    steps:
+    - xcode-test@2:
+        inputs:
+        - project_path: $BITRISE_PROJECT_PATH
+        - scheme: $BITRISE_SCHEME
+    before_run:
+    - pre-process
+    after_run:
+    - post-process
+  post-process:
+    steps:
+    - deploy-to-bitrise-io@1: {}
+    - cache-push@2:
+        inputs:
+        - cache_paths: |-
+            $BITRISE_CACHE_DIR
+            $MINT_PATH
+            ./vendor/bundle -> ./Gemfile.lock
+            ./Pods -> ./Podfile.lock
+    before_run: []
+    envs:
+    - opts:
+        is_expand: false
+      MINT_PATH: /usr/local/lib/mint
+  pre-process:
+    steps:
+    - activate-ssh-key@4:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@6: {}
+    - cache-pull@2: {}
+    - script@1:
+        title: Boot Setup and Bootstrap shell
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -ex
+            
+            ./scripts/setup.sh
+            ./scripts/bootstrap.sh
+    - certificate-and-profile-installer@1: {}
+app:
+  envs:
+  - opts:
+      is_expand: false
+    BITRISE_PROJECT_PATH: peekaboo.xcworkspace
+  - opts:
+      is_expand: false
+    BITRISE_SCHEME: peekaboo
+  - opts:
+      is_expand: false
+    BITRISE_EXPORT_METHOD: development
