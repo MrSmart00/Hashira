@@ -1,16 +1,9 @@
 #!/bin/sh
 
 ROOT=$(git rev-parse --show-toplevel)
+PROJECT_NAME=$(basename ${ROOT})
 
-if test -z "${CI:-}"; then
-  # Bitrise CLI
-  if test ! $(which bitrise); then
-    echo "  + Installing Bitrise CLI..."
-    brew install bitrise
-  else 
-    echo "  + Bitrise found."
-  fi
-fi
+find . \( -name \*.yml -or -name \*.md \) -type f -print0 | xargs -0 sed -i '' -e "s/__PROJECT_NAME__/$PROJECT_NAME/g"
 
 # Mint
 if test ! $(which mint); then
@@ -44,6 +37,17 @@ echo "  + Installing gems."
 bundle config set --local path 'vendor/bundle'
 bundle install --quiet
 
-swift run komondor install
+if test -z "${CI:-}"; then
+  # Bitrise CLI
+  if test ! $(which bitrise); then
+    echo "  + Installing Bitrise CLI..."
+    brew install bitrise
+  else 
+    echo "  + Bitrise found."
+  fi
+
+  # applies git-hooks
+  swift run komondor install
+fi
 
 echo "🏁 \033[32mSetup Completed!\033[m 🏁"

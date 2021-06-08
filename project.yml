@@ -1,4 +1,4 @@
-name: peekaboo
+name: __PROJECT_NAME__
 options:
   deploymentTarget:
     iOS: 14.0
@@ -11,7 +11,7 @@ configs:
   Staging: release
   Release: release
 targets:
-  peekaboo:
+  __PROJECT_NAME__:
     type: application
     platform: iOS
     settings:
@@ -21,14 +21,14 @@ targets:
         Staging:
           SWIFT_ACTIVE_COMPILATION_CONDITIONS: "STAGING"
     sources:
-      - peekaboo
+      - __PROJECT_NAME__
     scheme:
       testTargets:
-        - peekabooTests
-  peekabooTests:
+        - __PROJECT_NAME__Tests
+  __PROJECT_NAME__Tests:
     type: bundle.unit-test
     platform: iOS
     sources:
-      - peekabooTests
+      - __PROJECT_NAME__Tests
     dependencies:
-      - target: peekaboo
+      - target: __PROJECT_NAME__

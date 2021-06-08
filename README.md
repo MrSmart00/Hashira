@@ -1,1 +1,1 @@
-# Hashira
+# __PROJECT_NAME__

@@ -1,11 +1,11 @@
 platform :ios, '14.0'
 
-target 'peekaboo' do
+target '__PROJECT_NAME__' do
     use_frameworks!
 
-    target 'peekabooTests' do
+    target '__PROJECT_NAME__Tests' do
         inherit! :search_paths
-        pod 'SnapshotTesting', '~> 1.9'
+
     end
 
 end

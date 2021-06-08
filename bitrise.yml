@@ -2,6 +2,17 @@
 format_version: '11'
 default_step_lib_source: 'https://github.com/bitrise-io/bitrise-steplib.git'
 project_type: ios
+app:
+  envs:
+  - opts:
+      is_expand: false
+    BITRISE_PROJECT_PATH: __PROJECT_NAME__.xcworkspace
+  - opts:
+      is_expand: false
+    BITRISE_SCHEME: __PROJECT_NAME__
+  - opts:
+      is_expand: false
+    BITRISE_EXPORT_METHOD: development
 trigger_map:
 - push_branch: '*'
   workflow: tests
@@ -49,14 +60,3 @@ workflows:
             ./scripts/setup.sh
             ./scripts/bootstrap.sh
     - certificate-and-profile-installer@1: {}
-app:
-  envs:
-  - opts:
-      is_expand: false
-    BITRISE_PROJECT_PATH: peekaboo.xcworkspace
-  - opts:
-      is_expand: false
-    BITRISE_SCHEME: peekaboo
-  - opts:
-      is_expand: false
-    BITRISE_EXPORT_METHOD: development
