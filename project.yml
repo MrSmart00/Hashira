@@ -44,3 +44,9 @@ targets:
       - MainTests
     dependencies:
       - target: __PROJECT_NAME__
+  Content:
+    templates:
+      - framework-base
+  ContentTests:
+    templates:
+      - unit-test-base
