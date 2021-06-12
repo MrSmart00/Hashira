@@ -16,7 +16,7 @@ targetTemplates:
     platform: iOS
     sources:
       - path: ${target_name}
-  unittest-base:
+  unit-test-base:
     type: bundle.unit-test
     platform: iOS
     sources:
@@ -33,14 +33,14 @@ targets:
         Staging:
           SWIFT_ACTIVE_COMPILATION_CONDITIONS: "STAGING"
     sources:
-      - App
+      - Main
     scheme:
       testTargets:
-        - AppTests
+        - __PROJECT_NAME__Tests
   __PROJECT_NAME__Tests:
     type: bundle.unit-test
     platform: iOS
     sources:
-      - AppTests
+      - MainTests
     dependencies:
       - target: __PROJECT_NAME__

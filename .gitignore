@@ -95,3 +95,5 @@ vendor/
 
 # Some Generated files repository
 **/Generated
+
+.DS_Store
