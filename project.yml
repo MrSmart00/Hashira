@@ -10,6 +10,18 @@ configs:
   Debug: debug
   Staging: release
   Release: release
+targetTemplates:
+  framework-base:
+    type: framework
+    platform: iOS
+    sources:
+      - path: ${target_name}
+  unittest-base:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: ${target_name}
+    
 targets:
   __PROJECT_NAME__:
     type: application
@@ -21,14 +33,14 @@ targets:
         Staging:
           SWIFT_ACTIVE_COMPILATION_CONDITIONS: "STAGING"
     sources:
-      - __PROJECT_NAME__
+      - App
     scheme:
       testTargets:
-        - __PROJECT_NAME__Tests
+        - AppTests
   __PROJECT_NAME__Tests:
     type: bundle.unit-test
     platform: iOS
     sources:
-      - __PROJECT_NAME__Tests
+      - AppTests
     dependencies:
       - target: __PROJECT_NAME__
