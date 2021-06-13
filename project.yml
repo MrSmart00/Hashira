@@ -11,8 +11,13 @@ configs:
   Staging: release
   Release: release
 targetTemplates:
-  framework-base:
+  dynamic-framework-base:
     type: framework
+    platform: iOS
+    sources:
+      - path: ${target_name}
+  static-framework-base:
+    type: framework.static
     platform: iOS
     sources:
       - path: ${target_name}
@@ -46,7 +51,7 @@ targets:
       - target: __PROJECT_NAME__
   Content:
     templates:
-      - framework-base
+      - static-framework-base
   ContentTests:
     templates:
       - unit-test-base
