@@ -34,6 +34,8 @@ targets:
           SWIFT_ACTIVE_COMPILATION_CONDITIONS: "STAGING"
     sources:
       - Main
+    dependencies:
+      - target: Content
     scheme:
       testTargets:
         - __PROJECT_NAME__Tests
