@@ -38,6 +38,8 @@ bundle config set --local path 'vendor/bundle'
 bundle install --quiet
 
 if test -z "${CI:-}"; then
+  cp -fR "$ROOT"/scripts/git-hooks/ "$ROOT"/.git/hooks
+
   # Bitrise CLI
   if test ! $(which bitrise); then
     echo "  + Installing Bitrise CLI..."
@@ -45,9 +47,6 @@ if test -z "${CI:-}"; then
   else 
     echo "  + Bitrise found."
   fi
-
-  # applies git-hooks
-  swift run komondor install
 fi
 
 echo "🏁 \033[32mSetup Completed!\033[m 🏁"

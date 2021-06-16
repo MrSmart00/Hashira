@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -eu
+
+"$(git rev-parse --show-toplevel)"/scripts/setup.sh
+"$(git rev-parse --show-toplevel)"/scripts/bootstrap.sh
