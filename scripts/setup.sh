@@ -17,6 +17,13 @@ fi
 echo "  + bootstrap Mint."
 mint bootstrap
 
+if test ! -e "$(rbenv root)/versions/$(< .ruby-version)/bin/ruby"; then
+  echo "  + Installing Ruby $(< .ruby-version)..."
+  rbenv install "$(< .ruby-version)"
+else
+  echo "  + Ruby $(< .ruby-version) found."
+fi
+
 # echo "  + Create Secret via Sourcery."
 # # Fetch Secrets with Sourcery
 # git clone YOUR_SECRET_PROJECT_GIT "$ROOT"/secret
