@@ -47,7 +47,7 @@ workflows:
       MINT_PATH: /usr/local/lib/mint
     - opts:
         is_expand: false
-      RBENV_RUBY_VERSION_HOME: $(rbenv root)/versions/$(< .ruby-version)
+      RBENV_RUBY_VERSION_HOME: "$(rbenv root)/versions/$(< .ruby-version)"
   pre-process:
     steps:
     - activate-ssh-key@4:
