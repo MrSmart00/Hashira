@@ -32,6 +32,11 @@ workflows:
   post-process:
     steps:
     - deploy-to-bitrise-io@1: {}
+    - script@1:
+        title: Add rbenv cache path
+        inputs:
+        - content: |-
+            envman add --key RBENV_RUBY_VERSION_HOME --value "$(rbenv root)""/versions/""$(< .ruby-version)"
     - cache-push@2:
         inputs:
         - cache_paths: |-
@@ -45,9 +50,6 @@ workflows:
     - opts:
         is_expand: false
       MINT_PATH: /usr/local/lib/mint
-    - opts:
-        is_expand: false
-      RBENV_RUBY_VERSION_HOME: "$(rbenv root)/versions/$(< .ruby-version)"
   pre-process:
     steps:
     - activate-ssh-key@4:
