@@ -1,9 +1,10 @@
 #!/bin/sh
 
 ROOT=$(git rev-parse --show-toplevel)
-PROJECT_NAME=$(basename ${ROOT})
-
-find . \( -name \*.yml -or -name \*.md -or -name \*.swift \) -type f -print0 | xargs -0 sed -i '' -e "s/__PROJECT_NAME__/$PROJECT_NAME/g"
+if test -z "${CI:-}"; then
+  PROJECT_NAME=$(basename ${ROOT})
+  find . \( -name \*.yml -or -name \*.md -or -name \*.swift \) -type f -print0 | xargs -0 sed -i '' -e "s/__PROJECT_NAME__/$PROJECT_NAME/g"
+fi
 
 # Mint
 if test ! $(which mint); then
