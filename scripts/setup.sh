@@ -17,6 +17,13 @@ fi
 echo "  + bootstrap Mint."
 mint bootstrap
 
+if test ! $(which rbenv); then
+  echo "  💻 Installing rbenv..."
+  brew install rbenv
+else
+  echo "  🔍 rbenv found."
+fi
+
 if test ! -e "$(rbenv root)/versions/$(< .ruby-version)/bin/ruby"; then
   echo "  💻 Installing Ruby $(< .ruby-version)..."
   rbenv install "$(< .ruby-version)"
