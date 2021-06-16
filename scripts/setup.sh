@@ -8,20 +8,20 @@ fi
 
 # Mint
 if test ! $(which mint); then
-  echo "  + Installing Mint..."
+  echo "  💻 Installing Mint..."
   brew install mint
 else
-  echo "  + Mint found."
+  echo "  🔍 Mint found."
 fi
 
 echo "  + bootstrap Mint."
 mint bootstrap
 
 if test ! -e "$(rbenv root)/versions/$(< .ruby-version)/bin/ruby"; then
-  echo "  + Installing Ruby $(< .ruby-version)..."
+  echo "  💻 Installing Ruby $(< .ruby-version)..."
   rbenv install "$(< .ruby-version)"
 else
-  echo "  + Ruby $(< .ruby-version) found."
+  echo "  🔍 Ruby $(< .ruby-version) found."
 fi
 
 # echo "  + Create Secret via Sourcery."
@@ -34,14 +34,14 @@ fi
 
 # Bundler
 if test ! $(which bundle); then
-  echo "  + Installing bundler..."
+  echo "  💻 Installing bundler..."
   gem install bundler
 else
-  echo "  + Bundler found."
+  echo "  🔍 Bundler found."
 fi
 
 # Gem
-echo "  + Installing gems."
+echo "  💻 Installing gems."
 bundle config set --local path 'vendor/bundle'
 bundle install --quiet
 
@@ -50,10 +50,10 @@ if test -z "${CI:-}"; then
 
   # Bitrise CLI
   if test ! $(which bitrise); then
-    echo "  + Installing Bitrise CLI..."
+    echo "  💻 Installing Bitrise CLI..."
     brew install bitrise
   else 
-    echo "  + Bitrise found."
+    echo "  🔍 Bitrise found."
   fi
 fi
 
