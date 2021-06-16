@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Main
+@testable import __PROJECT_NAME__
 
 class MainTests: XCTestCase {
 
