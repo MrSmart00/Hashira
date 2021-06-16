@@ -36,6 +36,7 @@ workflows:
         inputs:
         - cache_paths: |-
             $BITRISE_CACHE_DIR
+            $RBENV_RUBY_VERSION_HOME
             $MINT_PATH
             ./vendor/bundle -> ./Gemfile.lock
             ./Pods -> ./Podfile.lock
@@ -44,6 +45,9 @@ workflows:
     - opts:
         is_expand: false
       MINT_PATH: /usr/local/lib/mint
+    - opts:
+        is_expand: false
+      RBENV_RUBY_VERSION_HOME: $(rbenv root)/versions/$(< .ruby-version)
   pre-process:
     steps:
     - activate-ssh-key@4:
