@@ -39,7 +39,7 @@ workflows:
             envman add --key RBENV_RUBY_VERSION_HOME --value "$(rbenv root)""/versions/""$(< .ruby-version)"
             envman add --key BREW_CELLAR_MINT --value "$(brew --cellar)/mint"
             envman add --key BREW_OPT_MINT --value "/usr/local/opt/mint"
-            envman add --key BREW_CACHE_MINT --value "$(brew --cache)/mint"
+            envman add --key BREW_CACHE_MINT --value "$(brew --cache mint)"
     - cache-push@2:
         inputs:
         - cache_paths: |-
