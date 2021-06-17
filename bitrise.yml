@@ -27,12 +27,8 @@ workflows:
         - content: |-
             #!/usr/bin/env bash
             set -ex
-            
+
             bundle exec fastlane ios test
-    - xcode-test@2:
-        inputs:
-        - project_path: $BITRISE_PROJECT_PATH
-        - scheme: $BITRISE_SCHEME
     before_run:
     - pre-process
     after_run:
