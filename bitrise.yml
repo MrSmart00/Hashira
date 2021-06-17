@@ -21,6 +21,11 @@ trigger_map:
 workflows:
   tests:
     steps:
+    - script@1:
+        title: Test via Fastlane
+        inputs:
+        - content: |-
+          bundle exec fastlane ios test
     - xcode-test@2:
         inputs:
         - project_path: $BITRISE_PROJECT_PATH
