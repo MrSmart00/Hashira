@@ -10,6 +10,7 @@ fi
 if test ! $(which mint); then
   echo "  💻 Installing Mint..."
   brew install mint
+  brew link mint
 else
   echo "  🔍 Mint found."
 fi
