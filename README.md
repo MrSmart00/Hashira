@@ -1,5 +1,6 @@
 # __PROJECT_NAME__
 
+![iOS](https://img.shields.io/badge/iOS-14.0-000000?style=flat&logo=Apple&logoColor=000000)
 ![Xcode](https://img.shields.io/badge/Xcode-12.5-147EFB?style=flat&logo=Xcode&logoColor=147EFB)
 ![Swift](https://img.shields.io/badge/Swift-5.4-FA7343?style=flat&logo=swift&logoColor=FA7343)
 ![Ruby](https://img.shields.io/badge/Ruby-2.6.3-CC342D?style=flat&logo=ruby&logoColor=CC342D)
