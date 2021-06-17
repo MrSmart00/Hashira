@@ -25,7 +25,10 @@ workflows:
         title: Test via Fastlane
         inputs:
         - content: |-
-          bundle exec fastlane ios test
+            #!/usr/bin/env bash
+            set -ex
+            
+            bundle exec fastlane ios test
     - xcode-test@2:
         inputs:
         - project_path: $BITRISE_PROJECT_PATH
@@ -41,6 +44,9 @@ workflows:
         title: Add cache path
         inputs:
         - content: |-
+            #!/usr/bin/env bash
+            set -ex
+            
             envman add --key RBENV_RUBY_VERSION_HOME --value "$(rbenv root)""/versions/""$(< .ruby-version)"
             envman add --key BREW_CELLAR_MINT --value "$(brew --cellar)/mint"
             envman add --key BREW_OPT_MINT --value "/usr/local/opt/mint"
